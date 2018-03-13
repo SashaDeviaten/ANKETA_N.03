@@ -4,7 +4,7 @@ let str = prompt('Введите строку');
 alert(getRussianVowels(str));
 
 function getRussianVowels(str) {
-    str=str.toLowerCase().split('');
+    str=str.toLowerCase();
     let russianVowels = 'аоэиуыеёюя';
     let count = 0;
     for (let i = 0; i < str.length; i++) {
