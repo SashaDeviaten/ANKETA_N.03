@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> DRINKS_HASH_N.13 </title>
+    <link rel="stylesheet" href="DRINKS_HASH_N.13.css">
+    <script src="HashStorage.js" type="text/javascript"></script>
+</head>
+
+<body>
+<input type="button" value="Ввод информации о напитке" onclick="setDrink()" class="mainButton"><br>
+<input type="button" value="Получение информации о напитке" onclick="getDescription()" class="mainButton"><br>
+<input type="button" value="Удаление информации о напитке" onclick="deleteDrink()" class="mainButton"><br>
+<input type="button" value="Перечень всех напитков" onclick="showListOfDrinks()" class="mainButton"><br>
+
+<div style="display: none" id="newDrink">
+    <p> Название напитка </p>
+    <input type="text" placeholder="Введите название напитка" id="name_i">
+    <p> Является ли напиток алкогольным?</p>
+    <input type="radio" name="alcoholic">  Да
+    <input type="radio" name="alcoholic"> Нет
+    <p> Рецепт приготовления </p>
+    <textarea placeholder="Опишите рецепт приготовления" id="recipe"></textarea>
+    <p> Полезная информация </p>
+    <textarea placeholder="Опишите информацию о напитке" id="information"></textarea><br>
+    <button onclick="saveDrink()"> Сохранить </button>
+    <button onclick="notSaveDrink()"> Отменить </button>
+    <p id="msg"></p>
+</div>
+
+<div style="display: none" id="drinkDescription">
+    <h3> Название </h3>
+    <p id="name_p"></p>
+    <h4> Описание </h4>
+    <p id="description_p"></p>
+
+</div>
+
+<div style="display: none" id="listOfDrinks">
+    <h3> Перечень напитков </h3>
+    <p id="listOfDrinks_p"></p>
+</div>
+
+
+<script src="DRINKS_HASH_N.13.js" type="text/javascript"></script>
+</body>
+
+</html>
+
+
+
