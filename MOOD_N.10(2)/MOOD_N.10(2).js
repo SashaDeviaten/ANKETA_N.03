@@ -16,15 +16,16 @@ function mood(colorsCount) {
     let exColors = {};
     console.log('цветов: ' + colorsCount + msg);
 
-    for (let i = 1; i <= colorsCount;) {
+    let i = 1;
+    while (i <= colorsCount) {
         let n = randomDiap(0, colors.length - 1);
         let colorName = colors[n];
 
-        if (!(colorName in exColors)) {
-            i++;
-            console.log(colorName);
-            exColors[colorName] = true;
-        }
+        if (colorName in exColors) continue;
+
+        console.log(colorName);
+        exColors[colorName] = true;
+        i++
     }
 }
 
