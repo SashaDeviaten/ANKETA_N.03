@@ -54,14 +54,12 @@ function getDescription() {
     closeAllDiv();
     let key = prompt('Введите название напитка');
     if (!key) return;
-    if (key in drinkStorage) {
+    if (key in drinkStorage.storage) {
         drinkDescription.style.display = 'block';
         drinksName_p.innerHTML = key;
         description_p.innerHTML = showObjectLikeText(drinkStorage.getValue(key));
     }
-    else {
-        alert('Такого напитка нет')
-    }
+    else alert('Такого напитка нет')
 }
 
 function showObjectLikeText(obj) {
@@ -75,7 +73,11 @@ function showObjectLikeText(obj) {
 function deleteDrink() {
     closeAllDiv();
     let key = prompt('Введите название напитка');
-    drinkStorage.deleteValue(key);
+    if (!key) return;
+    if (key in drinkStorage.storage) {
+        drinkStorage.deleteValue(key);
+    }
+    else alert('Такого напитка нет')
 }
 
 function showListOfDrinks() {
