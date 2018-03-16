@@ -22,11 +22,7 @@ class HashStorage {
     }
 
     getKeys() {
-        let arrOfKeys = [];
-        for (let keys in this.storage) {
-            arrOfKeys.push(keys)
-        }
-        return arrOfKeys
+        return Object.keys(this.storage)
     }
 }
 
