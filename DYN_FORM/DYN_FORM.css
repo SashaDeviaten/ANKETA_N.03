@@ -1,0 +1,16 @@
+textarea {
+    width: 100%;
+    height: 50px;
+}
+
+.longtext {
+    width: 400px;
+}
+
+.number {
+    width: 100px;
+}
+
+.shorttext, .combo {
+    width: 200px;
+}
