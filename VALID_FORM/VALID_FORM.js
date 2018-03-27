@@ -66,7 +66,10 @@ function testStartDate() {
     testTextValue.call(this);
     //дата в формате дд.мм.гггг (разделители -/.) начиная  с 21века
     let regexDate = new RegExp(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](20)\d\d$/);
-    if (this.value && !(this.value.match(regexDate))) createWarning.call(this, 'Ведите дату в формате дд.мм.гггг');
+    if (this.value && !(this.value.match(regexDate))) {
+        createWarning.call(this, 'Ведите дату в формате дд.мм.20гг');
+        return
+    }
 
     let startTimeBy = this.value;
     let startTime = startTimeBy.substr(6, 4) + '-' + parseInt(startTimeBy.substr(3, 2)) + '-' + startTimeBy.substr(0, 2);
