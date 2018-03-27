@@ -26,6 +26,7 @@ let submitMyForm = myForm.querySelector('#submitMyForm');
 submitMyForm.addEventListener('click', testForm);
 
 let payment = document.getElementsByName('payment');
+payment[0].parentNode.addEventListener('click', testPayment);
 
 function testTextValue() {
     let warning = this.parentNode.nextSibling;
@@ -93,7 +94,6 @@ function testEmail() {
 }
 
 function testPayment() {
-
     let flag = false;
 
     testTextValue.call(payment[0]);
