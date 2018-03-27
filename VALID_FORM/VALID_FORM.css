@@ -1,0 +1,27 @@
+textarea {
+    width: 98%;
+    height: 50px;
+}
+
+.longtext {
+    width: 400px;
+}
+
+.middletext {
+    width: 300px;
+}
+
+.number {
+    width: 100px;
+}
+
+.shorttext, .combo {
+    width: 200px;
+}
+
+.label {margin: 0px}
+table {border-collapse: collapse}
+
+.warning {
+    color: red;
+}

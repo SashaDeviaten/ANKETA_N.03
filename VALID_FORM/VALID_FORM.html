@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title> VALID_FORM </title>
+    <link rel="stylesheet" href="VALID_FORM.css">
+</head>
+
+<body>
+
+<form name="myForm" action="http://fe.it-academy.by/TestForm.php" method="get">
+    <table>
+        <tbody>
+        <tr>
+            <td>
+                <p class="label">Разработчики:</p>
+            </td>
+            <td>
+                <input type="text" class="longtext" name="developers">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">Название сайта</p>
+            </td>
+            <td>
+                <input type="text" class="longtext" name='siteName'>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">URL сайта:</p>
+            </td>
+            <td>
+                <input type="text" class="middletext" name='siteUrl'>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">Дата запуска сайта:</p>
+            </td>
+            <td>
+                <input type="text" class="number" name="startDate">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">Посетителей в сутки:	</p>
+            </td>
+            <td>
+                <input type="text" class="number" name='visitors'>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">E-mail для связи:</p>
+            </td>
+            <td>
+                <input type="text" name='email'>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">Рубрика каталога:</p>
+            </td>
+            <td>
+                <select name='division'>
+                    <option> здоровье </option>
+                    <option> домашний уют </option>
+                    <option> бытовая техника </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">Размещение:</p>
+            </td>
+            <td>
+                <input type="radio" name="payment" value="1" id="free"><label for="free">бесплатное</label>
+                <input type="radio" name="payment" value="2" id="pay"><label for="pay">платное</label>
+                <input type="radio" name="payment" value="3" id="vip"><label for="vip">VIP</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="label">Разрешить отзывы:</p>
+            </td>
+            <td>
+                <input type="checkbox" name='votes'>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p class="label">Описание сайта:</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea name='description'></textarea>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Опубликовать" id="submitMyForm">
+</form>
+<script src="VALID_FORM.js" type="text/javascript"></script>
+</body>
+
+</html>
+
+
+
