@@ -25,3 +25,7 @@ table {border-collapse: collapse}
 .warning {
     color: red;
 }
+
+select {
+    width: 150px;
+}

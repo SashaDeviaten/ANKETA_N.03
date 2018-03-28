@@ -28,6 +28,14 @@ submitMyForm.addEventListener('click', testForm);
 let payment = document.getElementsByName('payment');
 payment[0].parentNode.addEventListener('click', testPayment);
 
+let division = myForm.querySelector('select[name="division"]');
+division.addEventListener('change', testDivision);
+division.addEventListener('blur', testDivision);
+
+let votes = myForm.querySelector('input[name="votes"]');
+votes.addEventListener('blur', testVotes);
+votes.addEventListener('click', testVotes);
+
 function testTextValue() {
     let warning = this.parentNode.nextSibling;
     if (warning) {
@@ -51,6 +59,11 @@ function createWarning(msg) {
 function testSiteName() {
     testTextValue.call(this);
     if (this.value.length > 20) createWarning.call(this, 'Название не должно быть длинее 20 символов')
+}
+
+function testDivision() {
+    testTextValue.call(this);
+    if (this.value==0) createWarning.call(this, 'Необходимо выбрать рубрику')
 }
 
 function testUrl() {
@@ -93,6 +106,17 @@ function testEmail() {
     if (this.value && !(this.value.match(regexEmail))) createWarning.call(this, 'Ведите корректный email');
 }
 
+function testVotes() {
+    testTextValue.call(this);
+
+    if(!this.checked) createWarning.call(this, 'Щелчок-разрешить, два-нет ');
+    else {
+        this.removeEventListener('blur', testVotes);
+        this.removeEventListener('click', testVotes);
+    }
+
+}
+
 function testPayment() {
     let flag = false;
 
@@ -110,7 +134,7 @@ function testPayment() {
 
 function testForm(e) {
     let blur = new Event("blur");
-    let textInputs = [developers, siteName, siteUrl, startDate, visitors, email, description];
+    let textInputs = [developers, siteName, siteUrl, startDate, visitors, email, division, votes, description];
     let warnings=[];
     textInputs.forEach(elem => {
             elem.dispatchEvent(blur);
@@ -123,9 +147,11 @@ function testForm(e) {
 
     if (!testPayment()) {
         e.preventDefault();
-        if (warnings.some((elem) => {return elem===description})) {warnings.splice(-1,0,payment[0])}
+        if (warnings.some((elem,index) => {return ((elem===votes && index!==warnings.length-1))})) {warnings.splice(-2,0,payment[0])}
+        else if (warnings.some((elem) => {return elem===description})) {warnings.splice(-1,0,payment[0])}
         else warnings.push(payment[0])
     }
+
 
     if (warnings[0]) {
         warnings[0].scrollIntoView(true);
