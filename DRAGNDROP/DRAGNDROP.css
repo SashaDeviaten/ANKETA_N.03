@@ -1,0 +1,28 @@
+
+.player {
+    display: inline-block;
+    margin: 10px 0px;
+
+}
+
+.playerName {
+    text-align: center;
+    margin: 0px;
+}
+
+.playerImg {
+    width: 100px;
+    height: 100px;
+}
+
+.container {
+    float: right;
+    width: 30%;
+    display: inline-block;
+}
+
+.field {
+    width: 70%;
+    height: 620px;
+    display: inline-block;
+}
