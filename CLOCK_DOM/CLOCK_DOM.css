@@ -1,0 +1,45 @@
+
+.clockBody {
+    border-radius: 50%;
+    background-color: #FCCA66;
+    position: relative;
+}
+
+.clockHour {
+    border-radius: 50%;
+    background-color: #48B382;
+    position: absolute;
+    text-align: center;
+}
+.secondHand {
+    position: absolute;
+}
+.secondHandVisible {
+    width: 2px;
+    background-color: red;
+    border-radius: 1px;
+}
+
+.minuteHand {
+    position: absolute;
+}
+.minuteHandVisible {
+    width: 4px;
+    background-color: black;
+    border-radius: 2px;
+}
+
+.hourHand {
+    position: absolute;
+}
+.hourHandVisible {
+    width: 6px;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.eTimeBlock {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
