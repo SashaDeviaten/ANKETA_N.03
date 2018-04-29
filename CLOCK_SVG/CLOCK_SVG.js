@@ -97,7 +97,7 @@ function updateTime() {
 function setClockHands(time) {
     drawClockHand(time.seconds, SecondHandLengthCoefficient, SecondHandThickness);
     drawClockHand(time.minutes+time.seconds/60, MinuteHandLengthCoefficient, MinuteHandThickness);
-    drawClockHand(time.hours+time.minutes/12, HourHandLengthCoefficient, HourHandThickness);
+    drawClockHand(time.hours*5+time.minutes/12, HourHandLengthCoefficient, HourHandThickness);
 }
 
 function getCurrentTime(dt) {
