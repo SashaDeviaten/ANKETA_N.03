@@ -60,7 +60,8 @@ function createClockHand(name, rotationRadius, length) {
 (() => {
     let currTime = new Date();
     let milliSeconds = currTime.getMilliseconds();
-    setTimeout(setInterval(updateTime, 1000), 1000 - milliSeconds)
+    updateTime();
+    setTimeout(setInterval(updateTime, 1000), 1000 - milliSeconds + 20)
 })();
 
 
