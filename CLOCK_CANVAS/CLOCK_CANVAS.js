@@ -13,11 +13,11 @@ let HourHandThickness = ClockBodyDiameter/30;
 
 let container = document.querySelector('div.container');
 
-let svgClockBody = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-svgClockBody.setAttribute("width", ClockBodyDiameter);
-svgClockBody.setAttribute("height", ClockBodyDiameter);
-svgClockBody.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-container.appendChild(svgClockBody);
+let cvs = document.createElement('canvas');
+cvs.setAttribute("width", ClockBodyDiameter);
+cvs.setAttribute("height", ClockBodyDiameter);
+let context=cvs.getContext('2d');
+container.appendChild(cvs);
 
 (() => {
     let currTime = new Date();
@@ -27,65 +27,62 @@ container.appendChild(svgClockBody);
 })();
 
 function drawClockBody() {
-    let clockBody = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-    clockBody.setAttribute("fill", "#FCCA66");
-    clockBody.setAttribute("r", ClockBodyRadius);
-    clockBody.setAttribute("cx", ClockBodyRadius);
-    clockBody.setAttribute("cy", ClockBodyRadius);
-    svgClockBody.appendChild(clockBody);
 
-    drawHourNum()
+    context.beginPath();
+    context.arc(ClockBodyRadius,ClockBodyRadius, ClockBodyRadius, 0,Math.PI*2);
+    context.fillStyle='#FCCA66';
+    context.fill();
+    drawHourNum();
+    context.restore();
 }
 
 function drawEClock(timeStr) {
-    let eTimeBlock = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-    eTimeBlock.setAttribute("x", ClockBodyRadius);
-    eTimeBlock.setAttribute("width", ClockBodyDiameter);
-    eTimeBlock.setAttribute("y", ClockBodyDiameter / 3);
-    eTimeBlock.setAttribute("fill", "chartreuse");
-    eTimeBlock.setAttribute("text-anchor", "middle");
-    eTimeBlock.innerHTML=timeStr;
-    svgClockBody.appendChild(eTimeBlock)
+
+    context.fillStyle='chartreuse';
+    context.textAlign='center';
+    context.textBaseline='middle';
+    context.font='normal 20px TimesNewRoman';
+    context.fillText(timeStr,ClockBodyRadius,ClockBodyDiameter / 3);
+
 }
 
 function drawHourNum () {
     for (let i = 1; i <= 12; i++) { //12 - число часовых делений на циферблате
-        let clockHour = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
-        clockHour.setAttribute("fill", "#48B382");
-        clockHour.setAttribute("r", ClockHourRadius);
+
         let cx = ClockBodyRadius + (ClockBodyRadius * 0.8 * Math.sin((i * 360 / 12) / 180 * Math.PI));
         let cy = ClockBodyRadius - (ClockBodyRadius * 0.8 * Math.cos((i * 360 / 12) / 180 * Math.PI));
-        clockHour.setAttribute("cx", cx);
-        clockHour.setAttribute("cy", cy);
-        svgClockBody.appendChild(clockHour);
 
-        let text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-        text.innerHTML = i.toString();
-        text.setAttribute("x", cx);
-        text.setAttribute("y", cy + ClockHourRadius / 2);
-        text.setAttribute("text-anchor", "middle");
-        svgClockBody.appendChild(text);
+        context.beginPath();
+        context.arc(cx,cy, ClockHourRadius, 0,Math.PI*2, false);
+        context.fillStyle='#48B382';
+        context.fill();
+        context.restore();
+
+        context.fillStyle='black';
+        context.textAlign='center';
+        context.textBaseline='middle';
+        context.font='normal 16px TimesNewRoman';
+        context.fillText(i.toString(),cx,cy);
+
     }
 }
 
 function drawClockHand(value, coefficient, thickness) {
-    let hand = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+
+    context.strokeStyle='black';
+    context.lineWidth=thickness;
+    context.lineCap='round';
+    context.beginPath();
     let handX1 = ClockBodyRadius - (ClockBodyRadius * (coefficient * 0.08) * Math.sin((value * 360 / 60) / 180 * Math.PI));
     let handY1 = ClockBodyRadius + (ClockBodyRadius * (coefficient * 0.08) * Math.cos((value * 360 / 60) / 180 * Math.PI));
     let handX2 = ClockBodyRadius + (ClockBodyRadius * coefficient * Math.sin((value * 360 / 60) / 180 * Math.PI));
     let handY2 = ClockBodyRadius - (ClockBodyRadius * coefficient * Math.cos((value * 360 / 60) / 180 * Math.PI));
-    hand.setAttribute("x1", handX1);
-    hand.setAttribute("y1", handY1);
-    hand.setAttribute("x2", handX2);
-    hand.setAttribute("y2", handY2);
-    hand.setAttribute("stroke", "black");
-    hand.setAttribute("stroke-linecap", "round");
-    hand.setAttribute("stroke-width", thickness);
-    svgClockBody.appendChild(hand);
+    context.moveTo(handX1,handY1);
+    context.lineTo(handX2,handY2);
+    context.stroke();
 }
 
 function updateTime() {
-    svgClockBody.innerHTML='';
     drawClockBody();
     let currTime = new Date();
     let time = getCurrentTime(currTime);

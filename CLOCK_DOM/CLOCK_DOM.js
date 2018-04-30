@@ -23,7 +23,7 @@ eTimeBlock.className = 'eTimeBlock';
 eTimeBlock.style.top = ClockBodyDiameter * 0.25 + 'px';
 clockBody.appendChild(eTimeBlock);
 
-for (let i = 1; i < 13; i++) { //12 - число часовых делений на циферблате
+for (let i = 1; i <= 12; i++) { //12 - число часовых делений на циферблате
     let clockHour = document.createElement('div');
     clockHour.className = 'clockHour';
     clockHour.style.width = ClockHourDiameter + 'px';
