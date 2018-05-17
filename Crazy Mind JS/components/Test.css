@@ -1,0 +1,81 @@
+@import "../node_modules/bootstrap/dist/css/bootstrap-grid.css";
+
+
+.testBlock {
+    max-width: 80%;
+    margin: auto;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+
+.question {
+    width: 100%;
+    min-height: 100px;
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 10px;
+    margin: 20px auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.questionHeader {
+    margin-top: 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+}
+
+.questionMainOption {
+    margin-top: 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.answer {
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    /*width: 30%;*/
+    height: 100px;
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 10px;
+    font-size: 24px;
+    font-family: "Comic Sans MS";
+    line-height: 100px;
+
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear;
+
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+
+}
+
+@keyframes fade {
+    from {opacity: 1}
+    to {opacity: 0}
+}
+
+@keyframes slowShow {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@media (max-width: 576px) {
+    .answer {
+        height: 50px;
+        line-height: 50px;
+    }
+}
+@media (max-width: 720px) {
+    .answer {
+        height: 75px;
+        line-height: 75px;
+    }
+}

@@ -1,0 +1,89 @@
+[
+  {
+    "question": "Выберите блоки с текстом «синий»",
+    "answers": [
+      {
+        "text": "красный",
+        "color": "green"
+      },
+      {
+        "text": "синий",
+        "color": "red",
+        "correct": true
+      },
+      {
+        "text": "зелёный",
+        "color": "yellow"
+      },
+      {
+        "text": "желтый",
+        "color": "blue"
+      },
+      {
+        "text": "красный",
+        "color": "yellow"
+      },
+      {
+        "text": "синий",
+        "color": "green",
+        "correct": true
+      },
+      {
+        "text": "синий",
+        "color": "yellow",
+        "correct": true
+      },
+      {
+        "text": "желтый",
+        "color": "green"
+      },
+      {
+        "text": "зелёный",
+        "color": "red"
+      }
+    ]
+  },
+  {
+    "question": "Выберите блоки синего цвета",
+    "answers": [
+      {
+        "text": "синий",
+        "color": "red"
+      },
+      {
+        "text": "красный",
+        "color": "green"
+      },
+      {
+        "text": "желтый",
+        "color": "blue",
+        "correct": true
+      },
+      {
+        "text": "зелёный",
+        "color": "blue",
+        "correct": true
+      },
+      {
+        "text": "желтый",
+        "color": "red"
+      },
+      {
+        "text": "синий",
+        "color": "yellow"
+      },
+      {
+        "text": "желтый",
+        "color": "green"
+      },
+      {
+        "text": "красный",
+        "color": "blue",
+        "correct": true
+      }
+
+
+    ]
+  }
+
+]

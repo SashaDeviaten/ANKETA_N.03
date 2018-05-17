@@ -1,0 +1,23 @@
+
+.mainBlock {
+
+}
+
+.mainBlock_button {
+    display: block;
+    width: 30%;
+    min-width: 250px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 20px;
+    margin: 10px auto;
+    font: italic 32px "Comic Sans MS";
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    height: 250px;
+    margin: 10px auto;
+}
