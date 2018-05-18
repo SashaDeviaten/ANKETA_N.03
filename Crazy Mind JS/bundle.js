@@ -10485,6 +10485,9 @@ window.onhashchange = switchToStateFromURLHash;
 
 var SPAState = {};
 var app = document.getElementById('app');
+app.addEventListener('contextmenu', function (e) {
+    return e.preventDefault();
+});
 
 function switchToStateFromURLHash() {
     var URLHash = window.location.hash;
@@ -10504,7 +10507,7 @@ function switchToStateFromURLHash() {
             app.appendChild((0, _Game.buildGame)());
             break;
         case 'Rules':
-            app.innerHTML = _RulesBlock.RulesBlock;
+            app.appendChild(_RulesBlock.rulesBlock);
             break;
         case 'Records':
             app.appendChild((0, _RecordsBlock.buildRecordBlock)());
@@ -10528,7 +10531,7 @@ exports.mainBlock = undefined;
 
 __webpack_require__(6);
 
-var mainBlock = "<div class=\"mainBlock\">\n<img src=\"images/are_you.png\">\n<input onclick={location.hash='Game'} value=\"Start Game\" type=\"button\" class=\"mainBlock_button\" style=\"color: red\">\n<input onclick={location.hash='Rules'} value='Rules' type=\"button\" class=\"mainBlock_button\" style=\"color: blue\">\n<input onclick={location.hash='Records'} value='Records' type=\"button\" class=\"mainBlock_button\" style=\"color: green\">\n</div>";
+var mainBlock = "<div class=\"mainBlock\">\n<img src=\"./images/are_you.png\">\n<input onclick={location.hash='Game'} value=\"Start Game\" type=\"button\" class=\"mainBlock_button\" style=\"color: red\">\n<input onclick={location.hash='Rules'} value='Rules' type=\"button\" class=\"mainBlock_button\" style=\"color: blue\">\n<input onclick={location.hash='Records'} value='Records' type=\"button\" class=\"mainBlock_button\" style=\"color: green\">\n</div>";
 exports.mainBlock = mainBlock;
 
 /***/ }),
@@ -10553,12 +10556,24 @@ exports.mainBlock = mainBlock;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.RulesBlock = undefined;
+exports.rulesBlock = undefined;
 
 __webpack_require__(9);
 
-var RulesBlock = "<div class=\"RulesBlock\">\n\u041F\u043E\u043A\u0430 \u043B\u0435\u043D\u044C \u043F\u0438\u0441\u0430\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u0430. \u041F\u043E\u0442\u043E\u043C \u0434\u043E\u043F\u0438\u0448\u0443)\n</div>";
-exports.RulesBlock = RulesBlock;
+var rulesBlock = document.createElement('div');
+rulesBlock.className = 'rulesBlock';
+var backButton = document.createElement('div');
+backButton.className = 'backButton';
+backButton.innerHTML = 'Back to menu';
+backButton.onclick = function () {
+  return location.hash = 'Main';
+};
+rulesBlock.appendChild(backButton);
+var rules = document.createElement('div');
+rules.className = 'rules';
+rules.innerHTML = 'Пройди тест отвечая на вопросы и поставь рекорд. Если вариант ответа совпадают по тексту с основным параметром - кликай левой кнопкой мыщи либо жестом влево на сенсоре. Если вариант ответа совпадают по стилю с основным параметром - кликай правой кнопкой мыщи либо жестом вправо на сенсоре. У тебя есть право на три ошибки! Не дай обмануть себя! И поспеши - тест на время!';
+rulesBlock.appendChild(rules);
+exports.rulesBlock = rulesBlock;
 
 /***/ }),
 /* 9 */
@@ -10589,9 +10604,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var AjaxHandlerScript = "http://fe.it-academy.by/AjaxStringStorage2.php";
 var StringName = 'DEVIATEN_CRAZY_MIND_RECORDS';
 var lastRecords = void 0;
-var RecordsBlock = document.createElement('div');
 
 function buildRecordBlock() {
+
+    var recordsBlock = document.createElement('div');
+    recordsBlock.className = 'recordsBlock';
+
+    var backButton = document.createElement('div');
+    backButton.className = 'backButton';
+    backButton.innerHTML = 'Back to menu';
+    backButton.onclick = function () {
+        return location.hash = 'Main';
+    };
+    recordsBlock.appendChild(backButton);
 
     restoreInfo();
 
@@ -10619,20 +10644,24 @@ function buildRecordBlock() {
     function buildTable(lastRecords) {
 
         var recordsTable = document.createElement('table');
-        lastRecords.forEach(function (elem) {
+        lastRecords.forEach(function (elem, i) {
             var tr = document.createElement('tr');
             var td1 = document.createElement('td');
             var td2 = document.createElement('td');
-            td1.innerHTML = elem.name;
-            td2.innerHTML = elem.seconds;
+            td2.className = 'userName';
+            var td3 = document.createElement('td');
+            td1.innerHTML = i + 1 + ".";
+            td2.innerHTML = elem.name;
+            td3.innerHTML = elem.seconds;
             tr.appendChild(td1);
             tr.appendChild(td2);
+            tr.appendChild(td3);
             recordsTable.appendChild(tr);
         });
-        RecordsBlock.appendChild(recordsTable);
+        recordsBlock.appendChild(recordsTable);
     }
 
-    return RecordsBlock;
+    return recordsBlock;
 }
 exports.buildRecordBlock = buildRecordBlock;
 
@@ -10667,6 +10696,8 @@ var _ShapeTest = __webpack_require__(14);
 var _ShapeTest2 = _interopRequireDefault(_ShapeTest);
 
 var _getRecords = __webpack_require__(15);
+
+__webpack_require__(16);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10819,10 +10850,11 @@ function buildGame() {
     }
 
     function checkTest() {
-        if (wrongAnswers >= 5) {
+        if (wrongAnswers >= 4) {
+            //право на три ошибки
             testRightAnswers = 0;
             gameBlock.removeChild(testDOM);
-            gameBlock.innerHTML = 'Game Over!!!';
+            gameBlock.appendChild(buildGameOverBlock('Are You out of your mind?!'));
             console.log('Game Over!!!');
             gameOverSound();
             setTimeout(function () {
@@ -10838,10 +10870,10 @@ function buildGame() {
                 var endTime = Date.now();
                 var gameTime = endTime - startTime;
                 var seconds = Math.floor(gameTime / 1000);
-                gameBlock.innerHTML = 'Your win! Your time - ' + seconds + ' seconds';
+                gameBlock.appendChild(buildGameOverBlock('Your win! Your time - ' + seconds + ' seconds'));
                 setTimeout(function () {
                     return (0, _getRecords.storeInfo)(seconds);
-                }, 2000);
+                }, 1500);
                 console.log('Время игры - ' + seconds + ' секунд');
                 winSound();
             }
@@ -10852,6 +10884,18 @@ function buildGame() {
         elem.style.transform = "translateX(" + sign + elem.offsetWidth * 3.5 + "px)";
         elem.style.animationName = 'fade';
         elem.style.animationFillMode = 'forwards';
+    }
+
+    function buildGameOverBlock(text) {
+        var gameOverBlock = document.createElement('div');
+        gameOverBlock.className = 'gameOverBlock';
+        var img = document.createElement('img');
+        img.src = "./images/are_you.png";
+        gameOverBlock.appendChild(img);
+        var textWrap = document.createElement('div');
+        textWrap.innerHTML = text;
+        gameOverBlock.appendChild(textWrap);
+        return gameOverBlock;
     }
 
     return gameBlock;
@@ -11216,6 +11260,12 @@ function updateAJAX(lastRecords) {
 
 exports.lastRecords = lastRecords;
 exports.storeInfo = storeInfo;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

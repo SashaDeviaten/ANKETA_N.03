@@ -26,7 +26,7 @@ body {
   width: 100%;
   height: 100%;
   background-color: lightskyblue;
-  overflowX: hidden;
+  overflow-x: hidden;
 
   -moz-user-select: -moz-none;
   -o-user-select: none;
@@ -39,21 +39,60 @@ body {
   margin: auto;
 }
 
+.backButton {
+    text-align: left;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: -30px;
+    margin-bottom: 30px;
+    color: orangered;
+}
+.backButton:hover {
+    color: red;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+@media (max-width: 720px) {
+    .backButton {
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+}
 
-.RulesBlock {
+.rulesBlock {
+    width: 75%;
+    margin: 30px auto;
+    font: italic 24px "Comic Sans MS";
+}
+.rules {
+color: blue;
+}
+
+.recordsBlock {
     width: 75%;
     margin: 30px auto;
     font: italic 24px "Comic Sans MS";
 
 }
-
-.RecordsBlock {
-    width: 75%;
-    margin: 30px auto;
-    font: italic 24px "Comic Sans MS";
-
+table {
+    margin: auto;
 }
-/*!
+.userName {
+    padding-left: 15px;
+    width: 200px;
+}
+
+@media (max-width: 720px) {
+    .userName {
+        padding-left: 0;
+        width:150px;
+    }
+    .recordsBlock {
+        width: 100%;
+        margin: 10px auto;
+    }
+}/*!
  * Bootstrap Grid v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -2040,4 +2079,9 @@ html {
         height: 75px;
         line-height: 75px;
     }
+}
+.gameOverBlock {
+    color: red;
+    font: italic 24px "Comic Sans MS";
+    text-align: center;
 }

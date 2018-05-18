@@ -4,6 +4,7 @@
 import ColorTest from "./ColorTest";
 import ShapeTest from "./ShapeTest";
 import {restoreInfo, storeInfo} from "./getRecords";
+import './gameOverBlock.css';
 
 let tests = require('../tests.json');
 
@@ -146,10 +147,10 @@ function buildGame() {
     }
 
     function checkTest() {
-        if (wrongAnswers >= 5) {
+        if (wrongAnswers >= 4) { //право на три ошибки
             testRightAnswers = 0;
             gameBlock.removeChild(testDOM);
-            gameBlock.innerHTML='Game Over!!!';
+            gameBlock.appendChild(buildGameOverBlock('Are You out of your mind?!'));
             console.log('Game Over!!!');
             gameOverSound();
             setTimeout(()=>location.hash='Main',3000)
@@ -164,8 +165,8 @@ function buildGame() {
                 let endTime = Date.now();
                 let gameTime = endTime - startTime;
                 let seconds = Math.floor(gameTime / 1000);
-                gameBlock.innerHTML='Your win! Your time - '+seconds+ ' seconds';
-                setTimeout(()=>storeInfo(seconds),2000);
+                gameBlock.appendChild(buildGameOverBlock('Your win! Your time - '+seconds+ ' seconds'));
+                setTimeout(()=>storeInfo(seconds),1500);
                 console.log('Время игры - ' + seconds + ' секунд');
                 winSound()
             }
@@ -179,6 +180,18 @@ function buildGame() {
         elem.style.animationFillMode = 'forwards';
     }
 
+    function buildGameOverBlock(text) {
+        let gameOverBlock=document.createElement('div');
+        gameOverBlock.className='gameOverBlock';
+        let img=document.createElement('img');
+        img.src="./images/are_you.png";
+        gameOverBlock.appendChild(img);
+        let textWrap=document.createElement('div');
+        textWrap.innerHTML=text;
+        gameOverBlock.appendChild(textWrap);
+        return gameOverBlock
+
+    }
 
     return gameBlock;
 

@@ -1,7 +1,29 @@
+.backButton {
+    text-align: left;
+    cursor: pointer;
+    display: inline-block;
+    margin-left: -30px;
+    margin-bottom: 30px;
+    color: orangered;
+}
+.backButton:hover {
+    color: red;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+@media (max-width: 720px) {
+    .backButton {
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+}
 
-.RulesBlock {
+.rulesBlock {
     width: 75%;
     margin: 30px auto;
     font: italic 24px "Comic Sans MS";
-
+}
+.rules {
+color: blue;
 }

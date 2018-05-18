@@ -5,9 +5,18 @@ import $ from "jquery";
 const AjaxHandlerScript="http://fe.it-academy.by/AjaxStringStorage2.php";
 const StringName='DEVIATEN_CRAZY_MIND_RECORDS';
 let lastRecords;
-let RecordsBlock = document.createElement('div');
+
 
 function buildRecordBlock() {
+
+    let recordsBlock = document.createElement('div');
+    recordsBlock.className='recordsBlock';
+
+    let backButton= document.createElement('div');
+    backButton.className='backButton';
+    backButton.innerHTML='Back to menu';
+    backButton.onclick=()=> location.hash='Main';
+    recordsBlock.appendChild(backButton);
 
     restoreInfo();
 
@@ -39,20 +48,24 @@ function buildRecordBlock() {
     function buildTable(lastRecords) {
 
         let recordsTable = document.createElement('table');
-        lastRecords.forEach((elem) => {
+        lastRecords.forEach((elem,i) => {
             let tr = document.createElement('tr');
             let td1 = document.createElement('td');
             let td2 = document.createElement('td');
-            td1.innerHTML = elem.name;
-            td2.innerHTML = elem.seconds;
+            td2.className='userName';
+            let td3 = document.createElement('td');
+            td1.innerHTML=`${i+1}.`;
+            td2.innerHTML = elem.name;
+            td3.innerHTML = elem.seconds;
             tr.appendChild(td1);
             tr.appendChild(td2);
+            tr.appendChild(td3);
             recordsTable.appendChild(tr)
         });
-        RecordsBlock.appendChild(recordsTable);
+        recordsBlock.appendChild(recordsTable);
     }
 
 
-    return RecordsBlock;
+    return recordsBlock;
 }
 export {buildRecordBlock}

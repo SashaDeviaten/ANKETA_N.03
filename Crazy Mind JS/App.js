@@ -2,7 +2,7 @@
 
 import {mainBlock} from "./components/MainBlock";
 import './components/App.css';
-import {RulesBlock} from "./components/RulesBlock";
+import {rulesBlock} from "./components/RulesBlock";
 import {buildRecordBlock} from "./components/RecordsBlock";
 import {buildGame} from "./components/Game";
 
@@ -11,6 +11,7 @@ window.onhashchange=switchToStateFromURLHash;
 
 let SPAState={};
 let app= document.getElementById('app');
+app.addEventListener('contextmenu', (e)=>e.preventDefault());
 
 function switchToStateFromURLHash() {
     let URLHash=window.location.hash;
@@ -32,7 +33,7 @@ function switchToStateFromURLHash() {
             app.appendChild(buildGame());
             break;
         case 'Rules':
-            app.innerHTML=RulesBlock;
+            app.appendChild(rulesBlock);
             break;
         case 'Records':
             app.appendChild(buildRecordBlock());

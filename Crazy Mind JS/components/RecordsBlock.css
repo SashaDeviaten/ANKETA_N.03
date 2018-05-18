@@ -1,7 +1,25 @@
 
-.RecordsBlock {
+.recordsBlock {
     width: 75%;
     margin: 30px auto;
     font: italic 24px "Comic Sans MS";
 
+}
+table {
+    margin: auto;
+}
+.userName {
+    padding-left: 15px;
+    width: 200px;
+}
+
+@media (max-width: 720px) {
+    .userName {
+        padding-left: 0;
+        width:150px;
+    }
+    .recordsBlock {
+        width: 100%;
+        margin: 10px auto;
+    }
 }
